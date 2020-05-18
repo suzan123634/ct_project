@@ -1,0 +1,42 @@
+{% extends 'partials/base.html' %}
+{% load crispy_forms_tags %}
+
+    {% block header %}
+    {% include 'partials/header.html' %}
+    {% endblock header %}
+
+
+    {% block slider_area %}
+    {% include 'partials/slider_area.html' %}
+    {% endblock slider_area %}
+
+
+    {% block category_area %}
+    <div class='container'>
+        <div style="background-image: url('/static/img/banner/banner2.png');">
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <button type="submit" class="btn btn-info">Signup</button>
+                    </form>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock category_area %}
+   
+
+    {% block footer %}
+    {% include 'partials/footer.html' %}
+    {% endblock footer %}
+
+    
+    {% block script %}
+    {% include 'partials/script.html' %}
+    {% endblock script %}
