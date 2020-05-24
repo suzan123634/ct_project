@@ -1,0 +1,45 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+    {% block header %}
+    {% include 'partials/header.html' %}
+    {% endblock header %}
+
+
+    {% block slider_area %}
+    {% include 'partials/slider_area.html' %}
+    {% endblock slider_area %}
+
+    {% block category_area %}
+    
+    <!--================Blog Area =================-->
+  <div class="container my-5">
+   <div class="row">
+      <div class="col-md-4">
+         <div class="row">
+            <img class="img-fluid" src="{{ chinese.image.url }}" a;t="">
+         </div>
+         <div class="row  my-4">
+            <button id="pr{{ chinese.slug }}" class="btn btn-primary cart">Add To Cart</button>
+         </div>
+      </div>
+      <div class="col-md-8">
+         <h3>{{ chinese.title }}</h3>
+         <p><b>Rs.{{ chinese.price }}</b></p>
+         <p>{{ chinese.description }}</p>
+      </div>
+      </div>
+   </div>
+    <!--================ Blog Area end =================-->
+
+    {% endblock category_area %}
+   
+
+    {% block footer %}
+    {% include 'partials/footer.html' %}
+    {% endblock footer %}
+
+    
+    {% block script %}
+    {% include 'partials/script.html' %}
+    {% endblock script %}

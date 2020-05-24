@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import Burger, Beverages, Chinese, Pizza, Sandwich, Snacks, Home
+from .models import Burger, Beverages, Chinese, Pizza, Sandwich, Snacks, Home, Order, OrderItem, ShippingAddress
 
 # Register your models here.
 class BugerAdmin(admin.ModelAdmin):
     search_fields = ['title', 'description', 'price']
-    list_display = [ 'title', 'price', 'reporter', 'image']
+    list_display = [ 'title', 'price', 'slug', 'reporter', 'image']
     list_editable = ['price']
     list_filter = ['title','price']
     prepopulated_fields = {"slug": ("title",)}
@@ -13,7 +13,7 @@ class BugerAdmin(admin.ModelAdmin):
 
 class BeveragesAdmin(admin.ModelAdmin):
     search_fields = ['title', 'description', 'price']
-    list_display = [ 'title', 'price', 'reporter', 'image']
+    list_display = [ 'title', 'price', 'slug', 'reporter', 'image']
     list_editable = ['price']
     list_filter = ['title','price']
     prepopulated_fields = {"slug": ("title",)}
@@ -22,7 +22,7 @@ class BeveragesAdmin(admin.ModelAdmin):
 
 class ChineseAdmin(admin.ModelAdmin):
     search_fields = ['title', 'description', 'price']
-    list_display = [ 'title', 'price', 'reporter', 'image']
+    list_display = [ 'title', 'price', 'slug', 'reporter', 'image']
     list_editable = ['price']
     list_filter = ['title','price']
     prepopulated_fields = {"slug": ("title",)}
@@ -31,7 +31,7 @@ class ChineseAdmin(admin.ModelAdmin):
 
 class PizzaAdmin(admin.ModelAdmin):
     search_fields = ['title', 'description', 'price']
-    list_display = [ 'title', 'price', 'reporter', 'image']
+    list_display = [ 'title', 'price', 'slug', 'reporter', 'image']
     list_editable = ['price']
     list_filter = ['title','price']
     prepopulated_fields = {"slug": ("title",)}
@@ -40,7 +40,7 @@ class PizzaAdmin(admin.ModelAdmin):
 
 class SandwichAdmin(admin.ModelAdmin):
     search_fields = ['title', 'description', 'price']
-    list_display = [ 'title', 'price', 'reporter', 'image']
+    list_display = [ 'title', 'price', 'slug', 'reporter', 'image']
     list_editable = ['price']
     list_filter = ['title','price']
     prepopulated_fields = {"slug": ("title",)}
@@ -49,7 +49,7 @@ class SandwichAdmin(admin.ModelAdmin):
 
 class SnacksAdmin(admin.ModelAdmin):
     search_fields = ['title', 'description', 'price']
-    list_display = [ 'title', 'price', 'reporter', 'image']
+    list_display = [ 'title', 'price', 'slug', 'reporter', 'image']
     list_editable = ['price']
     list_filter = ['title','price']
     prepopulated_fields = {"slug": ("title",)}
@@ -63,6 +63,20 @@ class HomeAdmin(admin.ModelAdmin):
     class Meta:
         model = Home
 
+class OrderAdmin(admin.ModelAdmin):
+    search_fields = ['customer', 'transaction_id']
+    list_display = [ 'customer', 'transaction_id', 'date_order', 'complete']
+    list_filter = ['customer','transaction_id']
+    class Meta:
+        model = Snacks
+
+class ShippingAddressAdmin(admin.ModelAdmin):
+    search_fields = ['customer', 'Phone_number']
+    list_display = [ 'customer', 'Phone_number', 'Hosteler', 'date_added']
+    list_filter = ['customer','Phone_number']
+    class Meta:
+        model = Snacks
+
 
 
 admin.site.register(Burger, BugerAdmin)
@@ -72,3 +86,6 @@ admin.site.register(Pizza, PizzaAdmin)
 admin.site.register(Sandwich, SandwichAdmin)
 admin.site.register(Snacks, SnacksAdmin)
 admin.site.register(Home, HomeAdmin)
+admin.site.register(Order, OrderAdmin)
+admin.site.register(OrderItem)
+admin.site.register(ShippingAddress, ShippingAddressAdmin)

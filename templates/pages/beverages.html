@@ -57,37 +57,23 @@
                                             <li><a href="{% url 'menu' %}">Menu</a></li>
                                             <li><a href="{% url 'about' %}">About</a></li>
                                              
-                                            <li><a href="{% url 'blog' %}">blog</a>
-                                              
-    
-                                            </li>
-                                            <li><a href="{% url 'contact' %}">Contact</a></li>
-                                        {% if request.user.is_authenticated %}
-                                        <li><a href="#">Cart</a></li>
-                                            {{ request.user.username }}&nbsp;&nbsp;<li><a href="{% url 'logout' %}">Logout</a></li>
-                                            {% else %}
-                                            <li><a href="{% url 'signup' %}">SignUp</a></li>
-                                            <li><a href="{% url 'login' %}">LogIn</a></li>
-                                            {% endif %}
+                                            <li><a href="{% url 'blog' %}">blog</a></li>
+                                            <li><a href="{% url 'contact' %}">contact</a></li>
+                                           
                                         </ul>
                                     </nav>
                                 </div>
                             </div>
-                            <div class="col-xl-4 col-lg-4 d-none d-lg-block">
-                                <div class="social_wrap d-flex align-items-center justify-content-end">
-                                    <div class="number">
-                                        <p> <i class="fa fa-phone"></i> +917087696710</p>
-                                    </div>
-                                    <div class="social_links d-none d-xl-block">
-                                        <ul>
-                                            <li><a href="#"> <i class="fa fa-instagram"></i> </a></li>
-                                            <li><a href="#"> <i class="fa fa-linkedin"></i> </a></li>
-                                            <li><a href="#"> <i class="fa fa-facebook"></i> </a></li>
-                                            <li><a href="#"> <i class="fa fa-google-plus"></i> </a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                                {% if request.user.is_authenticated %}
+                                    <button type="button" class="btn btn-primary mx-2" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-content="My cart">
+                                        Cart(<span id="cart">0</span>)
+                                    </button>
+                                    <li><a href="{% url 'tracker' %}" class="btn btn-primary mx-2">Tracker</a></li>
+                                    {{ request.user.username }}&nbsp;<li><a href="{% url 'logout' %}" class="btn btn-primary mx-2">Logout</a></li>
+                                {% else %}
+                                    <li><a href="{% url 'signup' %}" class="btn btn-primary mx-2">SignUp</a></li> |
+                                    <li><a href="{% url 'login' %}" class="btn btn-primary mx-2">LogIn</a></li>
+                                {% endif %}
                             <div class="seach_icon">
                                 <a data-toggle="modal" data-target="#exampleModalCenter" href="#">
                                     <i class="fa fa-search"></i>
@@ -181,17 +167,20 @@
     </div>
 
     <div class="row">
-    {% for user in data3 %}
+    {% for beverages in data3 %}
       <div class="col-lg-4 col-md-6">
         <div class="single_destination">
           <div class="thumb">
-            <img src="{{ user.image.url }}" alt="" />
+            <img src="{{ beverages.image.url }}" alt="" />
           </div>
           <div class="content">
-            <p class="d-flex align-items-center">{{ user.title }}</p>
-            <p class="d-flex align-items-center">Rs.{{ user.price }}</p>
+            <p class="d-flex align-items-center">{{ beverages.title }}</p>
+            <p class="d-flex align-items-center">Rs.{{ beverages.price }}</p>
           </div>
-          
+        </div>
+        <div class="row mx-4 my-5">
+            <button id="#" class="btn btn-primary cart">Add To Cart</button>
+            <a href="{{ beverages.get_absolute_url }}"><button class="btn btn-primary mx-5">View</button></a>
         </div>
       </div>
       {% endfor %}

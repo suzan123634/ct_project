@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import DetailView
 from django.utils.text import slugify
+from blog import forms
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
@@ -21,10 +22,14 @@ class BlogDetailView(DetailView):
     context_object_name = "blog"
     # success_url = reverse_lazy("blog_detail")
 
+
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        self.object.count = self.object.count +1
-        self.object.save()
+        context = super(BlogDetailView,self).get_context_data(**kwargs)
         return context
 
+    
+
+
+
+    
 

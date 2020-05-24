@@ -1,0 +1,43 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+    {% block header %}
+    {% include 'partials/header.html' %}
+    {% endblock header %}
+
+    {% block category_area %}
+    
+    <!--================Blog Area =================-->
+    <div class="container my-5">
+   <div class="row">
+      <div class="col-md-4">
+         <div class="row">
+            <img class="img-fluid" src="{{ burger.image.url }}" a;t="">
+         </div>
+         <div class="row  my-4">
+            <button id="pr{{ burger.slug }}" class="btn btn-primary cart">Add To Cart</button>
+         </div>
+      </div>
+      <div class="col-md-8">
+         <h3>Food_Name</h3><h4>{{ burger.title }}</h4>
+         <h3>Food_Price</h3><h4>Rs.{{ burger.price }}</h4>
+         <h3>Food_description</h3><p>{{ burger.description }}</p>
+         <h3>Return Policy</h3><h4>No</h4>
+      </div>
+      </div>
+   </div>
+    <!--================ Blog Area end =================-->
+
+    {% endblock category_area %}
+   
+
+    {% block footer %}
+    {% include 'partials/footer.html' %}
+    {% endblock footer %}
+
+    
+    {% block script %}
+    {% include 'partials/script.html' %}
+    {% endblock script %}
+
+   
